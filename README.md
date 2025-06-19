@@ -1,13 +1,23 @@
-# Total Load Forecasting Website for Visualization
-In a first terminal:
+# Total Load Forecasting - Web Visualisation
+This module allows the visualisation of our 30-hours step ahead forecaster for the Belgian total electricity load.
+
+## Launching the data server
 ```bash
-./init_db
-./simulate.sh
+cd backend;
+./init_db;
+python3 app.py;
 ```
 
-Then, in a second one:
+## Launching the php server
 ```bash
-python3 app.py
+cd frontend;
+php -S 127.0.0.1:8000;
 ```
+Then, the web interface can be reached on _127.0.0.1:8000/index.php_.
 
-Then, the website should be available on localhost.
+## Adding points to the database
+Currently, the points are extracted from an external `.csv` file (they are not fetched yet). To simulate the adding of points (by ELIA), do
+```bash
+cd backend;
+python3 simulator.py;
+```
