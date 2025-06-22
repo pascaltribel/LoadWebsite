@@ -1,4 +1,15 @@
 services:
+  init-db:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: /bin/bash -c "./init.sh"
+    volumes:
+      - ./backend:/app
+      - backend_data:/app/data
+    networks:
+      - app-network
+
   backend:
     build:
       context: ./backend
@@ -14,6 +25,8 @@ services:
     restart: unless-stopped
     networks:
       - app-network
+    depends_on:
+      - init-db
 
   frontend:
     build:
